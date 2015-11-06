@@ -2,21 +2,27 @@
 
 angular.module 'dictamedWebApp'
 .controller 'MainCtrl', ($scope, $http, socket) ->
-  $scope.awesomeThings = []
+  $scope.translations = []
 
-  $http.get('/api/things').success (awesomeThings) ->
-    $scope.awesomeThings = awesomeThings
-    socket.syncUpdates 'thing', $scope.awesomeThings
+  # yo angular-fullstack:heroku
+  # grunt
+  # grunt buildcontrol:heroku
 
-  $scope.addThing = ->
-    return if $scope.newThing is ''
-    $http.post '/api/things',
-      name: $scope.newThing
+  $scope.save = (i) ->
+    i.translation = i.translationTemp
+    i.validated = true
+    delete i.translationTemp
+    $http.put '/api/translations/' + i._id, i
 
-    $scope.newThing = ''
+  $scope.send = (i) ->
+    i.translation = i.translationTemp
+    i.validated = true
+    delete i.translationTemp
+    $http.put '/api/translations/' + i._id, i
 
-  $scope.deleteThing = (thing) ->
-    $http.delete '/api/things/' + thing._id
+  $http.get('/api/translations').success (translations) ->
+    $scope.translations = translations
+    socket.syncUpdates 'translation', $scope.translations
 
   $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+    socket.unsyncUpdates 'translation'
