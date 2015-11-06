@@ -9,6 +9,16 @@ html, body
   padding 0
   background #F3F3F3
 
+::-moz-selection
+  color white
+  background #48C9DD
+  text-shadow none
+
+::selection
+  color white
+  background #48C9DD
+  text-shadow none
+
 #nav
   width 800px
   height 100px
@@ -43,7 +53,7 @@ ul#translations
     color black
     font-size 14px
     float left
-    overflow none
+    overflow hidden
 
     &.validated
       border 1px solid #48C9DD
@@ -84,6 +94,7 @@ ul#translations
       border-radius 0 0 3px 3px
       color rgb(100,100,100)
       font-size 12px
+      overflow hidden
 
       .button
         padding 6px 10px
@@ -97,5 +108,4 @@ ul#translations
           margin-right 5px
 
         &.right
-          margin-left 5px
           float right
