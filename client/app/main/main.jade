@@ -1,8 +1,8 @@
 #nav
-  input.animated.fadeInUp.search(type="text", placeholder="Search...", ng-model="search.$")
+  input.search(type="text", placeholder="Search...", ng-model="search.$")
 
 ul#translations(ng-repeat='i in translations | filter: search')
-  li.animated.fadeInUp(style="-webkit-animation-delay: {{$index * 0.05}}s;", ng-init="i.translationTemp = i.translation", ng-class="{ 'validated': i.validated }")
+  li(ng-init="i.translationTemp = i.translation", ng-class="{ 'validated': i.validated }")
     span.header
       a(href, ng-click="play(i)")
         i.fa.fa-play
