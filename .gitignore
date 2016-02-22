@@ -1,11 +1,5 @@
-node_modules
-public
-.tmp
-.idea
-client/bower_components
-dist
-/server/config/local.env.js
-npm-debug.log
+.meteor/local
+.meteor/meteorite
 
 .DS_Store
 .AppleDouble
@@ -32,3 +26,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
