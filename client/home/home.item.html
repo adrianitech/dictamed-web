@@ -1,0 +1,23 @@
+<template name="homeItem">
+  <div class="home-item">
+    <div class="ui form">
+      <h2 class="ui header">
+        {{title}}
+        <div class="sub header">{{formatDate createdAt}}</div>
+      </h2>
+      <div class="field">
+        <textarea rows="3">{{translation}}</textarea>
+      </div>
+    </div>
+    <div>
+      <button class="play ui left labeled icon button">
+        <i class="play icon"></i>
+        Play
+      </button>
+      <button class="valid ui left labeled icon green button">
+        <i class="check icon"></i>
+        Valid
+      </button>
+    </div>
+  </div>
+</template>

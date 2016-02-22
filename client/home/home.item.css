@@ -1,0 +1,10 @@
+.home-item {
+  padding: 60px 0;
+  border-bottom: 1px solid rgb(240,240,240);
+}
+
+.home-item textarea {
+  margin-bottom: 10px !important;
+  font-size: 15px;
+  resize: none !important;
+}

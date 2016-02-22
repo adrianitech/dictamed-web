@@ -1,0 +1,23 @@
+.header-top {
+  height: 80px;
+  line-height: 80px;
+  background: white;
+  border-bottom: 2px solid rgb(240,240,240);
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header-top .logo {
+  height: 54px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-top .input {
+  float: right;
+  display: inline-block;
+}

@@ -1,0 +1,14 @@
+<template name="home">
+  {{> header}}
+  <div class="home">
+    <div class="ui container">
+      {{#each items}}
+        {{> homeItem}}
+      {{/each}}
+      <div class="load-more-container">
+        <button id="load-more" class="ui button">More</button>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
