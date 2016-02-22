@@ -5,7 +5,3 @@ Meteor.publish("posts", function (limit) {
     limit: parseInt(limit)
   });
 });
-
-Meteor.publish("postById", function (id) {
-  return Posts.find({_id: id});
-});
