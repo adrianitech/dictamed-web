@@ -1,33 +1,35 @@
 <template name="homeItem">
   <div class="home-item">
-    <div class="ui form">
-      <h2 class="ui header">
-        {{title}}
-        <div class="sub header">{{formatDate createdAt}}</div>
-      </h2>
-      <div class="field">
-        <textarea rows="3" disabled="{{validated}}">{{translation}}</textarea>
+    <div class="home-content">
+      <div class="ui form">
+        <h3 class="ui header">
+          {{title}}
+          <div class="sub header">{{formatDate createdAt}}</div>
+        </h3>
+        <div class="field">
+          <textarea rows="3" disabled="{{validated}}">{{translation}}</textarea>
+        </div>
       </div>
-    </div>
-    <div>
-      <button class="play ui left labeled icon button">
-        <i class="play icon"></i>
-        Play
-      </button>
-      {{#if validated}}
-      <button class="valid ui left labeled icon button" disabled="true">
-        <i class="check icon"></i>
-        Validated
-      </button>
-      {{else}}
-      <button class="valid ui left labeled icon green button">
-        <i class="check icon"></i>
-        Validate
-      </button>
-      {{/if}}
-      <button class="delete ui icon negative right floated button">
-        <i class="trash icon"></i>
-      </button>
+      <div>
+        <button class="play ui left labeled icon button">
+          <i class="play icon"></i>
+          Play
+        </button>
+        {{#if validated}}
+        <button class="valid ui left labeled icon green button" disabled="true">
+          <i class="check icon"></i>
+          Validated
+        </button>
+        {{else}}
+        <button class="valid ui left labeled icon green button">
+          <i class="check icon"></i>
+          Validate
+        </button>
+        {{/if}}
+        <button class="delete ui icon negative right floated button">
+          <i class="trash icon"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>

@@ -3,7 +3,10 @@ const BATCH_SIZE = 10;
 Template.home.helpers({
   items: function() {
     return Posts.find({}, {
-      sort: {createdAt: -1}
+      sort: {
+        validated: 1,
+        createdAt: -1
+      }
     });
   },
   count: function() {
