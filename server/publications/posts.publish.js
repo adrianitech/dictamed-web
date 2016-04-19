@@ -1,5 +1,4 @@
 Meteor.publish("posts", function (limit) {
-  Counts.publish(this, 'count', Posts.find({}), {noReady: true});
   return Posts.find({}, {
     sort: {
       validated: 1,
@@ -7,8 +6,4 @@ Meteor.publish("posts", function (limit) {
     },
     limit: parseInt(limit)
   });
-});
-
-Meteor.publish("validPosts", function () {
-  return Posts.find({validated: true});
 });

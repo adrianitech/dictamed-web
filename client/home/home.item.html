@@ -1,34 +1,30 @@
 <template name="homeItem">
   <div class="home-item">
-    <div class="home-content">
-      <div class="ui form">
-        <h3 class="ui header">
-          {{title}}
-          <div class="sub header">{{formatDate createdAt}}</div>
-        </h3>
-        <div class="field">
-          <textarea rows="3" disabled="{{validated}}">{{translation}}</textarea>
-        </div>
+    <div class="home-item-header">
+      <h3>
+        {{title}}
+        <h4>{{formatDate createdAt}}</h4>
+      </h3>
+    </div>
+    <textarea>{{translation}}</textarea>
+    <div class="home-item-footer">
+      <div class="home-item-footer-progress">
+        <div class="home-item-footer-inner-progress" style="width: {{progress}}%;"></div>
       </div>
-      <div>
-        <button class="play ui left labeled icon button">
-          <i class="play icon"></i>
-          Play
-        </button>
-        {{#if validated}}
-        <button class="valid ui left labeled icon green button" disabled="true">
-          <i class="check icon"></i>
-          Validated
-        </button>
-        {{else}}
-        <button class="valid ui left labeled icon green button">
-          <i class="check icon"></i>
-          Validate
-        </button>
-        {{/if}}
-        <button class="delete ui icon negative right floated button">
-          <i class="trash icon"></i>
-        </button>
+      <div class="home-item-action">
+        <a class="validate" href="#">
+          <i class="mdi mdi-check"></i>
+        </a>
+      </div>
+      <div class="home-item-action">
+        <a class="play" href="#">
+          <i class="mdi mdi-play"></i>
+        </a>
+      </div>
+      <div class="home-item-action">
+        <a class="delete" href="#">
+          <i class="mdi mdi-close"></i>
+        </a>
       </div>
     </div>
   </div>

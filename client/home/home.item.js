@@ -1,19 +1,36 @@
 var playing = false;
 
+Template.homeItem.helpers({
+  'progress': function() {
+    return Session.get('progress');
+  }
+})
+
+function repeat() {
+  let value = Session.get('progress');
+  Session.set('progress', value + 1);
+  setTimeout(repeat, 500);
+}
+
+Template.homeItem.created = function() {
+  Session.set('progress', 0);
+  setTimeout(repeat, 500);
+};
+
 Template.homeItem.events({
   'click .play': function(event) {
-    var button = $(Template.instance().find('.play'));
+    var button = $(event.currentTarget);
     playing = !playing;
 
     if(playing) {
       button
-        .html('<i class="stop icon"></i>Stop');
+        .html('<i class="mdi mdi-stop"></i>');
     } else {
       button
-        .html('<i class="play icon"></i>Play');
+        .html('<i class="mdi mdi-play"></i>');
     }
   },
-  'click .valid': function(event) {
+  'click .validate': function(event) {
     var field = $(Template.instance().find('textarea'));
 
     Posts.update(
@@ -21,18 +38,6 @@ Template.homeItem.events({
       {$set: {translation: field.val()}});
   },
   'click .delete': function(event) {
-    var button = $(Template.instance().find('.delete'));
-
-    if (button.hasClass('confirm')) {
-      Posts.remove({_id: this._id});
-    } else {
-      button
-        .addClass('confirm left labeled')
-        .html('<i class="trash icon"></i>Delete');
-    }
+    Posts.remove({_id: this._id});
   }
-});
-
-Template.registerHelper('formatDate', function(date) {
-  return moment(date).format('lll');
 });

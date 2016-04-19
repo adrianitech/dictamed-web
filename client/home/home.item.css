@@ -1,21 +1,107 @@
 .home-item {
-  padding: 40px 0;
+  margin: 10px;
+  float: left;
+  width: 280px;
+  height: 350px;
+  background: white;
+  border: 1px solid rgb(230,230,230);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-item textarea {
+  padding: 0 15px 10px 15px;
+  font-size: 15px;
+  line-height: 30px;
+  border: none;
+  background: none;
+  resize: none;
+  /*overflow: hidden;*/
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  outline: none;
+  background-image: url('/images/paper.png');
+  background-position: 0 -4px;
+  background-attachment: local;
+}
+
+.home-item-header {
+  padding: 15px;
+  height: 70px;
   border-bottom: 1px solid rgb(240,240,240);
 }
 
-.home-content {
-  padding: 20px 15px;
-  border-radius: 4px;
-  border: 1px solid transparent;
+.home-item-footer {
+  /*padding: 15px;*/
+  background: white;
+  /*box-shadow: 0 0 10px rgb(200,200,200);*/
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  
+  transform: translateY(-100px);
+  transition: transform 0.35s ease-in-out;
 }
 
-.home-content:hover {
-  background: rgb(250,250,250);
-  border: 1px solid rgb(240,240,240);
+.home-item-footer-progress {
+  height: 4px;
+  position: absolute;
+  background: rgb(240,240,240);
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-.home-content textarea {
-  margin-bottom: 10px !important;
-  font-size: 15px;
-  resize: none !important;
+.home-item-footer-inner-progress {
+  /*width: 25%;*/
+  height: 4px;
+  display: block;
+  background: #9cc9a9;
+  border-right: 2px solid #8bad98;
+}
+
+.home-item:hover .home-item-footer {
+  transform: translateY(0);
+}
+
+/*.home-item:hover textarea {
+  height: 204px;
+}*/
+
+/*.home-item:hover textarea {
+  overflow-y: scroll;
+}*/
+
+.home-item-action {
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  padding: 10px 0;
+  display: inline-block;
+}
+
+.home-item-action a {
+  font-size: 1.5em;
+  color: black;
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 25px;
+  display: inline-block;
+  transition: all .1s linear;
+}
+
+.home-item-action a:hover {
+  background: #9cc9a9;
+  color: white;
+}
+
+.home-item-action:last-child {
+  border-right: none;
 }
