@@ -19,6 +19,7 @@
   resize: none;
   /*overflow: hidden;*/
   position: absolute;
+  width: 100%;
   top: 70px;
   left: 0;
   right: 0;
@@ -57,12 +58,32 @@
   right: 0;
 }
 
+.home-item.valid .home-item-header {
+  background: rgba(139, 173, 152, 0.2);
+}
+
+::selection {
+  background: rgba(139, 173, 152, 0.5);
+  color: black;
+}
+
 .home-item-footer-inner-progress {
   /*width: 25%;*/
   height: 4px;
   display: block;
   background: #9cc9a9;
   border-right: 2px solid #8bad98;
+}
+
+.home-item {
+  transition: all 0.2s linear;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.home-item:hover {
+  /*transform: scale(1.1, 1.1);*/
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
 }
 
 .home-item:hover .home-item-footer {
@@ -86,7 +107,7 @@
 }
 
 .home-item-action a {
-  font-size: 1.5em;
+  font-size: 1.6em;
   color: black;
   text-decoration: none;
   width: 50px;

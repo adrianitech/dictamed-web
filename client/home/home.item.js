@@ -3,6 +3,9 @@ var playing = false;
 Template.homeItem.helpers({
   'progress': function() {
     return Session.get('progress');
+  },
+  'validated': function() {
+    return this.validated ? 'valid' : ''
   }
 })
 
