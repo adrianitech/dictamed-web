@@ -16,13 +16,11 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 insecure                # Allow all DB writes from clients (for prototyping)
-flemay:less-autoprefixer
 iron:router
 accounts-password
 erasaur:meteor-lodash
 aldeed:collection2
 random
-sgi:sprintfjs
 momentjs:moment
 standard-minifier-css
 standard-minifier-js
