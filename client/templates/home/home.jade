@@ -1,0 +1,41 @@
+template(name="home")
+  ul.header
+    .container
+      li
+        img(src="/images/logo.png")
+      li
+        a(href="#")
+          i.mdi.mdi-check
+          | Mark as valid
+      li
+        a(href="#")
+          i.mdi.mdi-delete
+          | Delete
+      li.right
+        input(type="text", placeholder="Search...")
+  .container
+    table
+      tr
+        th
+          input.select-all(type="checkbox")
+        th Name
+        th Created
+        th Status
+        th Content
+      +each .
+        tr(data-id="{{_id}}")
+          td
+            input(type="checkbox")
+          td {{title}}
+          td {{formatDate createdAt}}
+          td
+            +if validated
+              span.label.label-valid
+                i.mdi.mdi-check
+                | Validated
+            +else
+              span.label.label-pending
+                i.mdi.mdi-clock
+                | Pending
+          td
+            span.content {{translation}}
