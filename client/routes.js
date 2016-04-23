@@ -15,9 +15,24 @@ Router.route('/', {
   data: function () {
     return Posts.find({}, {
       sort: {
-        validated: -1,
+        validated: 1,
         createdAt: -1,
       }
+    });
+  }
+});
+
+Router.route('/edit/:id', {
+  name: 'edit',
+  action: function() {
+    this.render('edit');
+  },
+  waitOn: function () {
+    return Meteor.subscribe('posts');
+  },
+  data: function () {
+    return Posts.findOne({
+      _id: this.params.id
     });
   }
 });

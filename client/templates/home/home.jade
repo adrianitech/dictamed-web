@@ -1,33 +1,15 @@
 template(name="home")
-  ul.header
-    .container
-      li
-        img(src="/images/logo.png")
-      li
-        a(href="#")
-          i.mdi.mdi-check
-          | Mark as valid
-      li
-        a(href="#")
-          i.mdi.mdi-delete
-          | Delete
-      li.right
-        input(type="text", placeholder="Search...")
+  +header
   .container
     table
       tr
-        th
-          input.select-all(type="checkbox")
-        th Name
-        th Created
         th Status
+        th Title
+        th Created
         th Content
+        th Actions
       +each .
         tr(data-id="{{_id}}")
-          td
-            input(type="checkbox")
-          td {{title}}
-          td {{formatDate createdAt}}
           td
             +if validated
               span.label.label-valid
@@ -37,5 +19,10 @@ template(name="home")
               span.label.label-pending
                 i.mdi.mdi-clock
                 | Pending
+          td {{title}}
+          td {{formatDate createdAt}}
           td
             span.content {{translation}}
+          td
+            a.label.label-tag(href="/edit/{{_id}}") Edit
+            a.label.label-tag.delete(href="#", data-id="{{_id}}") Delete

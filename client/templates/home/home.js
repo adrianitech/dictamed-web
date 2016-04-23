@@ -1,8 +1,8 @@
 Template.home.events({
-  'click tr': function(event) {
+  'click a.delete': function(event) {
     event.preventDefault();
 
     let id = $(event.currentTarget).attr('data-id');
-    window.location = '/edit/' + id;
+    Posts.remove({_id: id});
   }
 });
