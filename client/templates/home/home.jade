@@ -8,6 +8,12 @@ template(name="home")
         th Created
         th Content
         th Actions
+      +if isEmpty .
+        tr
+          td(colspan="5", style="padding: 50px; text-align: center;")
+            i.mdi.mdi-cat(style="font-size: 2.5em;")
+            br
+            | Nothing here
       +each .
         tr(data-id="{{_id}}")
           td

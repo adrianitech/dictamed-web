@@ -16,12 +16,8 @@ template(name="edit")
         h4 {{formatDate createdAt}}
       textarea(style="margin-bottom: 25px; resize: none; height: 300px; width: 100%; display: block; outline: none; font-size: 1em; line-height: 1.5em;") {{translation}}
       .inner
-        span.label.label-tag
-          a.play(href="#", style="margin-right: 10px;")
-            i.mdi.mdi-play
-          span 00:00
-          | / 
-          span 00:00
-        audio(controls)
+        a.validate.label.label-valid(href="#", style="width: 16%; line-height: 36px; padding: 0 10px; border-radius: 0 4px 4px 0; text-align: center;")
+          i.mdi.mdi-check
+          | Mark as valid
+        audio(preload="auto")
           source(src="{{audio}}", type="audio/wav")
-        a.validate.label.label-valid(href="#", style="float: right;") Mark as valid

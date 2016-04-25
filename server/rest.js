@@ -52,16 +52,13 @@ Router.onBeforeAction(function (req, res, next) {
 });
 Router.route('/api/upload/:id',function() {
   var file = this.request.files[0];
-  var newFile = new FS.File();
-  let id1 = this.params.id;
+  var tId = this.params.id;
 
-  console.log('da');
-
-  newFile.attachData(file.data, {type: file.mimeType}, function(err) {
-      newFile.name(file.filename);
-      Audio.insert(newFile, function (err, fileObj) {
-        console.log(fileObj._id);
-        Transcripts.update({_id: id1}, {
+  var FSFile = new FS.File();
+  FSFile.attachData(file.data, {type: file.mimeType}, function(err) {
+      FSFile.name(file.filename);
+      Audio.insert(FSFile, function (err, fileObj) {
+        Transcripts.update({_id: tId}, {
           $set: {
             audio: '/cfs/files/audio/' + fileObj._id + '/audio.wav'
           }

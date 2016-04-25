@@ -13,3 +13,9 @@ Template.edit.events({
     });
   }
 });
+
+Template.edit.rendered = function() {
+  audiojs.events.ready(function() {
+    let as = audiojs.createAll();
+  });
+};
