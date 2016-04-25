@@ -28,3 +28,5 @@ nimble:restivus
 dapearce:material-icons
 mquandalle:jade
 stylus
+cfs:standard-packages
+cfs:filesystem

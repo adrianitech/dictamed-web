@@ -3,6 +3,6 @@ Template.home.events({
     event.preventDefault();
 
     let id = $(event.currentTarget).attr('data-id');
-    Posts.remove({_id: id});
+    Transcripts.remove({_id: id});
   }
 });

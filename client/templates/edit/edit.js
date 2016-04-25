@@ -5,9 +5,10 @@ Template.edit.events({
     let id = this._id;
     let text = $('textarea').val()
 
-    Posts.update({_id: id}, {
+    Transcripts.update({_id: id}, {
       $set: {
-        translation: text
+        translation: text,
+        validated: true
       }
     });
   }

@@ -10,10 +10,10 @@ Router.route('/', {
     this.render('home');
   },
   waitOn: function () {
-    return Meteor.subscribe('posts');
+    return Meteor.subscribe('transcripts');
   },
   data: function () {
-    return Posts.find({}, {
+    return Transcripts.find({}, {
       sort: {
         validated: 1,
         createdAt: -1,
@@ -28,10 +28,10 @@ Router.route('/edit/:id', {
     this.render('edit');
   },
   waitOn: function () {
-    return Meteor.subscribe('posts');
+    return Meteor.subscribe('transcripts');
   },
   data: function () {
-    return Posts.findOne({
+    return Transcripts.findOne({
       _id: this.params.id
     });
   }
