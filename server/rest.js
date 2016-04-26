@@ -4,7 +4,7 @@ var api = new Restivus({
 });
 
 api.addCollection(Transcripts, {
-  excludedEndpoints: ['delete', 'put']
+  excludedEndpoints: ['put']
 });
 
 var Busboy = require('busboy');
@@ -50,6 +50,7 @@ Router.onBeforeAction(function (req, res, next) {
         this.next();
     }
 });
+
 Router.route('/api/upload/:id',function() {
   var file = this.request.files[0];
   var tId = this.params.id;
