@@ -14,7 +14,7 @@ template(name="edit")
               i.mdi.mdi-clock
               | Pending
         h4 {{formatDate createdAt}}
-      textarea(style="margin-bottom: 25px; resize: none; height: 300px; width: 100%; display: block; outline: none; font-size: 1em; line-height: 1.5em;") {{translation}}
+      textarea#text(style="margin-bottom: 25px; resize: none; height: 300px; width: 100%; display: block; outline: none; font-size: 1em; line-height: 1.5em;") {{translation}}
       .inner
         a.validate.label.label-valid(href="#", style="width: 16%; line-height: 36px; padding: 0 10px; border-radius: 0 4px 4px 0; text-align: center;")
           i.mdi.mdi-check
