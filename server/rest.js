@@ -52,8 +52,10 @@ Router.onBeforeAction(function (req, res, next) {
 });
 
 Router.route('/api/upload/:id',function() {
-  var file = this.request.files[0];
-  var tId = this.params.id;
+  let file = this.request.files[0];
+  let tId = this.params.id;
+
+  let res = this.response;
 
   var FSFile = new FS.File();
   FSFile.attachData(file.data, {type: file.mimeType}, function(err) {
@@ -63,7 +65,9 @@ Router.route('/api/upload/:id',function() {
           $set: {
             audio: '/cfs/files/audio/' + fileObj._id + '/audio.wav'
           }
-        })
+        });
+
+        res.end('done');
       });
   });
 }, {where: 'server'});
