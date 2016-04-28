@@ -27,10 +27,7 @@ function setSelectionRange(input, selectionStart, selectionEnd) {
   }
 }
 
-Template.edit.rendered = function() {
-  let textarea = document.getElementById('text');
-  let text = $('#text').val();
-
+function getWords(text) {
   var words = text.split(' ');
 
   for (var i = 0; i < words.length; i++) {
@@ -42,24 +39,28 @@ Template.edit.rendered = function() {
     }
   }
 
-  console.log(words);
+  return words;
+}
+
+Template.edit.rendered = function() {
+  let textarea = document.getElementById('text');
+  let translation = textarea.value;
+
+  let words = getWords(translation);
 
   audiojs.events.ready(function() {
     let as = audiojs.createAll();
     as[0].element.ontimeupdate = function() {
-
-      if (as[0].paused) { return }
-
-      let time = as[0].element.currentTime;
-      let duration = as[0].element.duration;
-      let progress = parseInt((words.length - 1) * time / duration);
+      let i = as[0].element.currentTime;
+      let n = as[0].element.duration;
+      let x = parseInt((words.length - 1) * i / n);
 
       var start = 0;
-      for (var i = 0; i < progress; i++) {
-        start = start + words[i].length + 1;
+      for (var j = 0; j < x; j++) {
+        start = start + words[j].length + 1;
       }
 
-      let end = start + words[progress].length;
+      let end = start + words[x].length;
 
       setSelectionRange(textarea, start, end);
     };
