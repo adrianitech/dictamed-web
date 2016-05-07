@@ -29,4 +29,4 @@ dapearce:material-icons
 mquandalle:jade
 stylus
 cfs:standard-packages
-cfs:filesystem
+cfs:gridfs
