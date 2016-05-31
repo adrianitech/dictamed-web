@@ -75,6 +75,7 @@ logging@1.0.12
 mdg:validation-error@0.5.1
 meteor@1.1.14
 meteor-base@1.0.4
+meteorhacks:picker@1.0.3
 minifier-css@1.1.11
 minifier-js@1.1.11
 minifiers@1.1.7

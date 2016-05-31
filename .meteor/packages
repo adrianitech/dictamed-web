@@ -30,3 +30,4 @@ mquandalle:jade
 stylus
 cfs:standard-packages
 cfs:gridfs
+meteorhacks:picker

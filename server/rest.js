@@ -1,73 +1,53 @@
-var api = new Restivus({
-  useDefaultAuth: true,
-  prettyJson: true
+var bodyParser = require('body-parser');
+
+Picker.middleware(bodyParser.urlencoded());
+Picker.middleware(bodyParser.json());
+Picker.middleware(bodyParser.raw());
+
+var postRoutes = Picker.filter(function(req, res) {
+  return req.method == 'POST';
 });
 
-api.addCollection(Transcripts, {
-  excludedEndpoints: ['put']
+var getRoutes = Picker.filter(function(req, res) {
+  return req.method == 'GET';
 });
 
-var Busboy = require('busboy');
-
-Router.onBeforeAction(function (req, res, next) {
-    var files = []; // Store files in an array and then pass them to request.
-    var image = {}; // crate an image object
-
-    if (req.method === "POST") {
-        var busboy = new Busboy({ headers: req.headers });
-        busboy.on("file", function (fieldname, file, filename, encoding, mimetype) {
-            image.mimeType = mimetype;
-            image.encoding = encoding;
-            image.filename = filename;
-
-            // buffer the read chunks
-            var buffers = [];
-
-            file.on('data', function(data) {
-                buffers.push(data);
-            });
-            file.on('end', function() {
-                // concat the chunks
-                image.data = Buffer.concat(buffers);
-                // push the image object to the file array
-                files.push(image);
-            });
-        });
-
-        busboy.on("field", function(fieldname, value) {
-            req.body[fieldname] = value;
-        });
-
-        busboy.on("finish", function () {
-            // Pass the file array together with the request
-            req.files = files;
-            next();
-        });
-        // Pass request to busboy
-        req.pipe(busboy);
-    }
-    else{
-        this.next();
-    }
+var deleteRoutes = Picker.filter(function(req, res) {
+  return req.method == 'DELETE';
 });
 
-Router.route('/api/upload/:id',function() {
-  let file = this.request.files[0];
-  let tId = this.params.id;
-
-  let res = this.response;
-
+postRoutes.route('/api/transcripts/upload/:id', function(params, req, res, next) {
   var FSFile = new FS.File();
-  FSFile.attachData(file.data, {type: file.mimeType}, function(err) {
-      FSFile.name(file.filename);
-      Audio.insert(FSFile, function (err, fileObj) {
-        Transcripts.update({_id: tId}, {
-          $set: {
-            audio: '/cfs/files/audio/' + fileObj._id + '/audio.wav'
-          }
-        });
-
-        res.end('done');
+  FSFile.attachData(req.body, {type: req.headers.type}, function(err) {
+    Audio.insert(FSFile, function (err, file) {
+      Transcripts.update({_id: params.id}, {
+        $set: { audio: '/cfs/files/audio/' + file._id }
       });
+
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({success: true}));
+    });
   });
-}, {where: 'server'});
+});
+
+postRoutes.route('/api/transcripts', function(params, req, res, next) {
+  let id = Transcripts.insert(req.body);
+  let result = Transcripts.findOne({_id: id});
+
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(result));
+});
+
+getRoutes.route('/api/transcripts', function(params, req, res, next) {
+  let result = Transcripts.find().fetch();
+
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(result));
+});
+
+deleteRoutes.route('/api/transcripts/:id', function(params, req, res, next) {
+  Transcripts.remove({_id: params.id});
+
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({success: true}));
+});

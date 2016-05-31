@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "busboy": "^0.2.13"
+    "body-parser": "^1.15.1"
   }
 }
