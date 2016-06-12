@@ -1,7 +1,8 @@
 var bodyParser = require('body-parser');
 
 Picker.middleware(bodyParser.urlencoded());
-Picker.middleware(bodyParser.raw());
+Picker.middleware(bodyParser.json());
+Picker.middleware(bodyParser.raw({limit: '5mb'}));
 
 var postRoutes = Picker.filter(function(req, res) {
   return req.method == 'POST';
@@ -17,8 +18,6 @@ var deleteRoutes = Picker.filter(function(req, res) {
 
 postRoutes.route('/api/transcripts/upload/:id', function(params, req, res, next) {
   var FSFile = new FS.File();
-  console.log(req.body);
-  console.log(req.headers);
   FSFile.attachData(req.body, {type: req.headers.type}, function(err) {
     Audio.insert(FSFile, function (err, file) {
       Transcripts.update({_id: params.id}, {
