@@ -1,7 +1,6 @@
 var bodyParser = require('body-parser');
 
 Picker.middleware(bodyParser.urlencoded());
-Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.raw());
 
 var postRoutes = Picker.filter(function(req, res) {
