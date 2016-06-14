@@ -8,11 +8,11 @@ template(name="home")
         th Content
         th Actions
       +if isEmpty .
-        tr
-          td(colspan="5", style="padding: 50px; text-align: center;")
-            i.mdi.mdi-file-document-box(style="font-size: 2.5em;")
-            br
-            | Nothing here
+        tr.placeholder
+          td(colspan="5", style="padding: 150px; text-align: center;")
+            i.mdi.mdi-emoticon-happy(style="font-size: 5em; margin-bottom: 20px; display: block;")
+            h3 Good job!
+            | There are no new documents to be validated
       +each .
         tr(data-id="{{_id}}")
           td
